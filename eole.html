@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le clan d'Éole</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="structure_architecturale.html">Structure Architecturale</a>
+          <a href="structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="gel.html">Gel</a>
+          <a href="sol.html">Sol</a>
+          <a href="eole.html">Éole</a>
+          <a href="or.html">Or</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+<!-- Carousel -->
+<div class="carousel">
+  <div class="carousel-item active">
+    <img src="./img/bgnd_Hall_Of_Ice.jpg" alt="Image 1">
+    <div class="carousel-caption">
+      <h3>Le Hall des Glaces</h3>
+      <p>Un hall contenant les plus belles sculptures créées par les Géléites. Exposées au jeunes génération les inspirant à se surpasser pour qu'un jour, leur travail aussi soit exposé.</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Cryorloge.jpg" alt="Image 2">
+    <div class="carousel-caption">
+      <h3>La Cryorloge</h3>
+      <p>"La Cryorloge a été créée pour que tout le monde puisse être à l'heure. Du coup pourquoi est-ce qu'on remarque tellement plus de retards depuis qu'elle est là ?"</p>
+      <p>- Graziel</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Slumboy.jpg" alt="Image 3">
+    <div class="carousel-caption">
+      <h3>Basse-Ville</h3>
+      <p>"Je me demande si dans la Cathédrale il y a un petit garçon qui regarde en bas et se pose la même question..."</p>
+      <p>- Melior</p>
+    </div>
+  </div>
+</div>
+
+<!-- Carousel navigation buttons -->
+<div class="carousel-buttons">
+  <button onclick="previousSlide()">Previous</button>
+  <button onclick="nextSlide()">Next</button>
+</div>
+
+  <!-- Main Content Section -->
+  <section class="section" style="background-image: url(./img/bgnd_Ice_castle.jpg);">
+    <h2>Le clan d'Éole</h2>
+<p>Le clan Éolien est un véritable désordre. Sauf, bien sûr, pour le clan Éolien lui-même.<br><br>
+
+Le clan d’Éole obtient le gros de ses points de contribution en travaillant aux moulins. Mais "travailler" est un bien grand mot. La main-d’œuvre requise est dérisoire comparée à la population disponible. Le travail est assez simple, pourtant de nombreuses erreurs sont commises, car les Éoliens, loin d’être stupides, préfèrent s’amuser. Habituellement, pour une dizaine de personnes dans un moulin, une seule travaille pendant que les neuf autres s’amusent, et ils se relayent régulièrement. Mais même ainsi, ils se laissent souvent distraire et mettent du temps à répondre aux signaux.<br><br>
+
+Ils sont cependant les seuls capables de travailler à une telle altitude, avec autant de vent, et sont donc irremplaçables, au grand désespoir des Solitaires.<br><br>
+
+Leurs jeux, sans surprise, ont rarement pour priorité la sécurité des participants. Il n’est donc pas inhabituel qu’un membre du clan d’Éole tombe mort d’un moulin en s’amusant. Si, au début, cette cause de mortalité donnait des cheveux blancs aux Géléites, les règles de sécurité et sanctions imposées par le clan de Gel ont eu peu d’effet sur ces incidents. Ils ont tenté d’aborder le problème avec les autorités du clan d’Éole, mais ce dernier ne possède pratiquement aucune structure interne et vote principalement de façon démocratique, moulin par moulin, sans limite d’âge. <br><br>
+
+On comptabilise le nombre de moulins pour ou contre chaque décision, puis la décision est reportée. Ce procédé est long et souvent inefficace, à cause du manque de conséquences en cas de non-respect des règles. Le clan de Gel a fini par se résigner, se disant que les meilleurs membres du clan d’Éole seraient capables d’éviter les chutes grâce à leur contrôle du vent.<br><br>
+
+Les Éoliens sont connus pour leur amour de la danse, du chant, du sifflement, et de la manipulation de diverses flûtes. Chaque moulin est connecté à quelques autres moulins par des tuyaux qu’ils utilisent pour communiquer verbalement avec les autres. Ces canaux de communication sont principalement utilisés pour organiser des fêtes.<br><br>
+
+Contrairement aux autres clans, les Éoliens s’habillent à peine en extérieur afin de maximiser le contact avec le vent, et s’emmitouflent autant que possible lorsqu’ils se retrouvent dans des espaces clos.</p>
+
+
+  </section>
+
+  <!-- Audio Element -->
+  <audio id="background-music" src="./snd/Bloody_stream.mp3" loop></audio>
+
+<script src="carousel.js"></script>
+
+  <script>
+    // Autoplay music when page loads and handle user interaction requirement
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('background-music');
+      
+      // Attempt to play the audio on page load
+      audio.play().catch(() => {
+        // If autoplay is blocked, prompt the user to start it manually
+        document.body.addEventListener('click', function() {
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>

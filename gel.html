@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le clan de Gel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="structure_architecturale.html">Structure Architecturale</a>
+          <a href="structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="gel.html">Gel</a>
+          <a href="sol.html">Sol</a>
+          <a href="eole.html">Éole</a>
+          <a href="or.html">Or</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+<!-- Carousel -->
+<div class="carousel">
+  <div class="carousel-item active">
+    <img src="./img/bgnd_Hall_Of_Ice.jpg" alt="Image 1">
+    <div class="carousel-caption">
+      <h3>Le Hall des Glaces</h3>
+      <p>Un hall contenant les plus belles sculptures créées par les Géléites. Exposées au jeunes génération les inspirant à se surpasser pour qu'un jour, leur travail aussi soit exposé.</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Cryorloge.jpg" alt="Image 2">
+    <div class="carousel-caption">
+      <h3>La Cryorloge</h3>
+      <p>"La Cryorloge a été créée pour que tout le monde puisse être à l'heure. Du coup pourquoi est-ce qu'on remarque tellement plus de retards depuis qu'elle est là ?"</p>
+      <p>- Graziel</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Slumboy.jpg" alt="Image 3">
+    <div class="carousel-caption">
+      <h3>Basse-Ville</h3>
+      <p>"Je me demande si dans la Cathédrale il y a un petit garçon qui regarde en bas et se pose la même question..."</p>
+      <p>- Melior</p>
+    </div>
+  </div>
+</div>
+
+<!-- Carousel navigation buttons -->
+<div class="carousel-buttons">
+  <button onclick="previousSlide()">Previous</button>
+  <button onclick="nextSlide()">Next</button>
+</div>
+
+  <!-- Main Content Section -->
+  <section class="section" style="background-image: url(./img/bgnd_Ice_castle.jpg);">
+    <h2>Le clan de Gel</h2>
+<p>
+Les Géléites sont ceux qui dévouent la plus grande partie de leur vie au service de leur divinité.<br><br>
+Peut-être parce que Gel est la seule divinité à qui le sort des humains importe réellement ? Ou peut-être est-ce simplement dans leur nature…<br><br>
+Les membres du clan de Gel sont pragmatiques, rationnels et semblent souvent dénués de toute émotion.<br><br>
+Tous les enfants sont éduqués à l’intérieur de la Cathédrale, qu’ils ne quitteront jamais, sauf exception, durant toute leur enfance.<br><br>
+La Cathédrale elle-même est faite d’une glace spéciale, renforcée et concentrée par des générations d’experts en magie glaciale. À ce jour, rares sont les membres du clan capables de manipuler librement la glace dont la Cathédrale est faite, et ceux qui le peuvent ont l’interdiction de le faire en dehors de travaux encadrés, afin d’éviter d’endommager le bâtiment. Cette glace est réputée incassable et incapable de fondre.<br><br>
+Les enfants ne connaissent pas leur père et ne passent que peu de temps avec leur mère ; tous les enfants sont élevés ensemble comme frères, sœurs, cousins et cousines.<br><br>
+Le clan impose des règles extrêmement strictes et fait usage de sanctions physiques et psychologiques dès le plus jeune âge pour que les enfants se conforment.<br><br>
+Ne visant qu’à investir dans les meilleurs éléments, qui serviraient Gel au mieux, les enfants sont soumis à des traitements extrêmes, ce qui entraîne un haut taux de mortalité infantile.<br><br>
+Leur seul passe-temps ne visant pas directement le bénéfice de La Ville est l’art.<br><br>
+Les Géléites sont éduqués dans l’art de la sculpture sur glace, la poésie et le chant choral. Il est attendu d’eux d’atteindre une maîtrise de base dans les trois domaines et une maîtrise avancée dans une des formes d’art.<br><br>
+Gel étant considérée comme une divinité « féminine », la tribu est principalement matriarcale et guidée par une Haute-Prêtresse ayant le dernier mot sur les affaires du clan.<br><br>
+La Haute-Prêtresse est de fait la personne détenant le plus de pouvoir de toute La Ville.<br><br>
+Sauf faute grave, une Haute-Prêtresse est maintenue à sa position toute sa vie et est sélectionnée après le départ de la précédente.<br><br>
+La majeure partie des hommes est envoyée chasser ou fait régner l’ordre dans La Ville, ne revenant que ponctuellement à des fins reproductrices.<br><br>
+Durant toute leur enfance, les Géléites laissent pousser leurs cheveux jusqu’à leur cérémonie de passage à l’âge adulte, où ils seront sommés de les couper et de les tresser.<br><br>
+Ils utilisent ensuite une méthode spéciale, connue uniquement du clan, pour en faire un fouet capable de conduire leur magie, dont ils se servent comme arme.<br><br>
+Ils portent typiquement de longs vêtements blancs, plutôt fins, recouvrant l’entièreté de leur peau à l’exception du visage.
+</p>
+
+  </section>
+
+  <!-- Audio Element -->
+  <audio id="background-music" src="./snd/19 Baldur's Gate 3 Original Soundtrack - Nightsong.mp3" loop></audio>
+
+<script src="carousel.js"></script>
+
+  <script>
+    // Autoplay music when page loads and handle user interaction requirement
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('background-music');
+      
+      // Attempt to play the audio on page load
+      audio.play().catch(() => {
+        // If autoplay is blocked, prompt the user to start it manually
+        document.body.addEventListener('click', function() {
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le clan de Sol</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="structure_architecturale.html">Structure Architecturale</a>
+          <a href="structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="gel.html">Gel</a>
+          <a href="sol.html">Sol</a>
+          <a href="eole.html">Éole</a>
+          <a href="or.html">Or</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+<!-- Carousel -->
+<div class="carousel">
+  <div class="carousel-item active">
+    <img src="./img/bgnd_Hall_Of_Ice.jpg" alt="Image 1">
+    <div class="carousel-caption">
+      <h3>Le Hall des Glaces</h3>
+      <p>Un hall contenant les plus belles sculptures créées par les Géléites. Exposées au jeunes génération les inspirant à se surpasser pour qu'un jour, leur travail aussi soit exposé.</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Cryorloge.jpg" alt="Image 2">
+    <div class="carousel-caption">
+      <h3>La Cryorloge</h3>
+      <p>"La Cryorloge a été créée pour que tout le monde puisse être à l'heure. Du coup pourquoi est-ce qu'on remarque tellement plus de retards depuis qu'elle est là ?"</p>
+      <p>- Graziel</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="./img/bgnd_Slumboy.jpg" alt="Image 3">
+    <div class="carousel-caption">
+      <h3>Basse-Ville</h3>
+      <p>"Je me demande si dans la Cathédrale il y a un petit garçon qui regarde en bas et se pose la même question..."</p>
+      <p>- Melior</p>
+    </div>
+  </div>
+</div>
+
+<!-- Carousel navigation buttons -->
+<div class="carousel-buttons">
+  <button onclick="previousSlide()">Previous</button>
+  <button onclick="nextSlide()">Next</button>
+</div>
+
+  <!-- Main Content Section -->
+  <section class="section" style="background-image: url(./img/bgnd_Ice_castle.jpg);">
+    <h2>Le clan de Sol</h2>
+<p>Il est ironique qu’un peuple aussi inflexible et traditionaliste que celui des Solitaires déborde d’autant de créativité. Le clan de Sol est rempli de petits génies capables de construire n’importe quoi avec les moyens du bord. Peu importe s’il faut parfois utiliser des méthodes peu conventionnelles, du moment que ça marche ! Les Solitaires ont un talent inné pour trouver des solutions.<br><br>
+
+Le problème est que le clan est tellement loyal aux traditions qu’il refuse souvent d’implémenter de nouvelles méthodes et régulations, même lorsque celles-ci sont manifestement supérieures aux anciennes. Les Solitaires sont si axés sur la famille qu’il n’est pas surprenant qu’ils aient développé un népotisme systémique qui les pousse à prioriser les intérêts de leur propre clan ou cocon familial, parfois au détriment de La Ville. Ce népotisme est accentué par leur contact avec les autres peuples, qui, ne partageant pas les mêmes valeurs, sont souvent considérés comme des décadents et des sauvages — sauf le clan de Gel.<br><br>
+
+Si tous les membres du clan de Sol placent la famille en priorité, la notion de ce qui constitue la famille peut varier fortement d’un individu à l’autre. Les enfants de ce clan sont assez impressionnables durant leur enfance et construisent graduellement leur système de valeurs en fonction de leur expérience personnelle. Vers la fin de l’adolescence, il devient improbable qu’un Solitaire change encore ses opinions.<br><br>
+
+C’est pourtant ainsi que le clan évolue dans ses valeurs, petit à petit. Chaque génération grandit avec de nouvelles influences, qu’elle intègre à ses propres coutumes. En fonction des priorités et des opinions personnelles de chaque Solitaire, celui-ci pourra se consacrer à des causes très différentes. Ils se divisent souvent en individus qui priorisent soit leur cocon familial, soit le clan, soit La Ville. Et bien que chaque membre tienne au clan, ils sont suffisamment têtus pour lui tenir tête en cas de désaccord, ce qui crée de nombreuses tensions. Ces disputes sont réglées par un leader élu parmi les anciens, principalement des patriarches, même si de nombreuses femmes ont déjà été élues.<br><br>
+
+Étant de loin le peuple le plus sensible au nouveau climat, les Solitaires utilisent principalement leurs tunnels souterrains pour se déplacer et sont incapables de rester longtemps à la surface sans la présence d’un membre du clan d’Or. C’est pourquoi ils sont toujours couverts de plusieurs couches de vêtements et de fourrures. Souvent, pour passer le temps, ils s’adonnent à la sculpture sur pierre et bois, ainsi qu’à la poterie.</p>
+
+
+  </section>
+
+  <!-- Audio Element -->
+  <audio id="background-music" src="./snd/Siúil A Rúin - (Traditional Irish Song) - Colm R. McGuinness.mp3" loop></audio>
+
+<script src="carousel.js"></script>
+
+  <script>
+    // Autoplay music when page loads and handle user interaction requirement
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('background-music');
+      
+      // Attempt to play the audio on page load
+      audio.play().catch(() => {
+        // If autoplay is blocked, prompt the user to start it manually
+        document.body.addEventListener('click', function() {
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>
