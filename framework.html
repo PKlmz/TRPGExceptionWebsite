@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framework de création</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .image-grid-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .image-grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .image-grid-item:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="structure_architecturale.html">Structure Architecturale</a>
+          <a href="structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="gel.html">Gel</a>
+          <a href="sol.html">Sol</a>
+          <a href="eole.html">Éole</a>
+          <a href="or.html">Or</a>
+        </div>
+      </li>
+
+      <li><a href="framework.html">Framework de création</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Section -->
+  <section class="image-grid">
+    <div class="image-grid-item" onclick="window.location.href='frameworks/Solitaires/Spécialisation.html'">
+      <img src="./img/bgnd_Solitaire.jpg" alt="Guerrier Solitaire">
+    </div>
+    <div class="image-grid-item" onclick="window.location.href='frameworks/Géléites/Spécialisation.html'">
+      <img src="./img/bgnd_Géléite.jpg" alt="Image 2">
+    </div>
+    <div class="image-grid-item" onclick="window.location.href='./frameworks/Éoliens/Spécialisation.html'">
+      <img src="./img/bgnd_Guerriere_Eolienne.jpg" alt="Image 3">
+    </div>
+    <div class="image-grid-item" onclick="window.location.href='./frameworks/Oréaux/Spécialisation.html'">
+      <img src="./img/Guerrier_Oréal.jpg" alt="Image 4">
+    </div>
+  </section>
+
+</body>
+</html>
