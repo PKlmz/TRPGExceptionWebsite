@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Métier</title>
+  <link rel="stylesheet" href="../../../styles.css">
+    <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      gap: 10px;
+    }
+
+    .image-item {
+      position: relative;
+      width: 30%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .image-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .hover-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-item:hover .hover-text {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="../../../index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="../../../structure_architecturale.html">Structure Architecturale</a>
+          <a href="../../../structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="../../../magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="../../../gel.html">Gel</a>
+          <a href="../../../sol.html">Sol</a>
+          <a href="../../../eole.html">Éole</a>
+          <a href="../../../or.html">Or</a>
+        </div>
+      </li>
+
+      <li><a href="../../../framework.html">Framework de création</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Section -->
+  <section class="image-row">
+    <div class="image-item" onclick="window.location.href='./Chauffeur/caractéristiques.html'">
+      <img src="../../../img/Chauffeur_Oréal.jpg" alt="Chauffeur">
+      <div class="hover-text"><br>
+        <u>Chauffeur:</u><br><br><br><br>
+        Magie curative<br>
+        Résistant au froid améliorée<br>
+      </div>
+    </div>
+    <div class="image-item" onclick="window.location.href='./Chasseur/caractéristiques.html'">
+      <img src="../../../img/Chasseur_Oréal.jpg" alt="Chasseur">
+      <div class="hover-text">
+        <u>Chasseur:</u><br><br><br><br>
+        Variété d'attaques<br>
+        Crée/répare des vêtements<br>
+      </div>
+    </div>
+    <div class="image-item" onclick="window.location.href='./Ouvrier/caractéristiques.html'">
+      <img src="../../../img/Ouvrier_Oréal.jpg" alt="Ouvrier">
+      <div class="hover-text">
+        <u>Ouvrier:</u><br><br><br><br>
+        Prix réduits<br>
+        Récolte certains matériaux<br>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
