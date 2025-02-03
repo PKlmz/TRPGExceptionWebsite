@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caractéristiques</title>
+  <link rel="stylesheet" href="../../../../styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 60px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .left-section {
+      flex: 1;
+      max-width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .left-section h1 {
+      text-decoration: underline;
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      font-size: 1.5rem;
+    }
+
+    .field input {
+      font-size: 1.2rem;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .points-remaining {
+      font-weight: bold;
+      text-align: left;
+      font-size: 1.5rem;
+    }
+
+    .stat-container {
+      display: grid;
+      grid-template-columns: auto 60px auto 60px 30px 30px;
+      gap: 20px 15px;
+      align-items: center;
+    }
+
+    .stat-container span {
+      text-align: left;
+      font-size: 1.5rem;
+    }
+
+    .stat-container .stat-value {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .stat-container button {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    .stat-container button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .checkbox-container {
+      display: grid;
+      grid-template-columns: 30px 30px;
+      gap: 20px 15px;
+      align-items: center;
+    }
+
+    .checkbox-header {
+      text-align: right;
+      font-size: 1.2rem;
+    }
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .image-container {
+      width: 12vw;
+      aspect-ratio: 1 / 1;
+      background-color: #ddd;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+    }
+
+    .tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="../../../../index.html">Genèse</a></li>
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="../../../../structure_architecturale.html">Structure Architecturale</a>
+          <a href="../../../../structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+      <li><a href="../../../../magie.html">Magie</a></li>
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="../../../../gel.html">Gel</a>
+          <a href="../../../../sol.html">Sol</a>
+          <a href="../../../../eole.html">Éole</a>
+          <a href="../../../../or.html">Or</a>
+        </div>
+      </li>
+      <li><a href="../../../../framework.html">Framework de création</a></li>
+    </ul>
+  </nav>
+
+  <!-- Left Section -->
+  <div class="left-section">
+    <h1>Caractéristiques</h1>
+
+    <div class="field">
+      <label for="user-input">Nom :</label>
+      <input type="text" id="user-input">
+    </div>
+
+    <div class="field">
+      <label for="sexe-select">Sexe :</label>
+      <select id="sexe-select" style="font-size: 1.2rem; padding: 8px; margin-left: 10px;">
+        <option value="male">Oui</option>
+        <option value="male">Male</option>
+        <option value="femelle">Femelle</option>
+      </select>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <p style="margin: 0; font-size: 1.5rem;">Guerrier Solitaire</p>
+      <p style="margin: 0; font-size: 1.5rem;">Politicien</p>
+    </div>
+
+    <div class="points-remaining">
+      <p>Point(s) restant</p>
+      <p id="points">15</p>
+    </div>
+
+    <div class="checkbox-header">
+      <span>+2</span>
+      <span>+1</span>
+    </div>
+
+    <div class="stat-container">
+      <span>Force</span>
+      <button onclick="updateStat('force', -1)">-</button>
+      <span id="force" class="stat-value">10</span>
+      <button onclick="updateStat('force', 1)">+</button>
+      <input type="checkbox" name="force-plus2" onclick="handleCheckbox('force', 'plus2')">
+      <input type="checkbox" name="force-plus1" onclick="handleCheckbox('force', 'plus1')">
+
+      <span>Dextérité</span>
+      <button onclick="updateStat('dexterite', -1)">-</button>
+      <span id="dexterite" class="stat-value">10</span>
+      <button onclick="updateStat('dexterite', 1)">+</button>
+      <input type="checkbox" name="dexterite-plus2" onclick="handleCheckbox('dexterite', 'plus2')">
+      <input type="checkbox" name="dexterite-plus1" onclick="handleCheckbox('dexterite', 'plus1')">
+
+      <span>Constitution</span>
+      <button onclick="updateStat('constitution', -1)">-</button>
+      <span id="constitution" class="stat-value">10</span>
+      <button onclick="updateStat('constitution', 1)">+</button>
+      <input type="checkbox" name="constitution-plus2" onclick="handleCheckbox('constitution', 'plus2')">
+      <input type="checkbox" name="constitution-plus1" onclick="handleCheckbox('constitution', 'plus1')">
+
+      <span>Intelligence</span>
+      <button onclick="updateStat('intelligence', -1)">-</button>
+      <span id="intelligence" class="stat-value">10</span>
+      <button onclick="updateStat('intelligence', 1)">+</button>
+      <input type="checkbox" name="intelligence-plus2" onclick="handleCheckbox('intelligence', 'plus2')">
+      <input type="checkbox" name="intelligence-plus1" onclick="handleCheckbox('intelligence', 'plus1')">
+
+      <span>Mental</span>
+      <button onclick="updateStat('mental', -1)">-</button>
+      <span id="mental" class="stat-value">10</span>
+      <button onclick="updateStat('mental', 1)">+</button>
+      <input type="checkbox" name="mental-plus2" onclick="handleCheckbox('mental', 'plus2')">
+      <input type="checkbox" name="mental-plus1" onclick="handleCheckbox('mental', 'plus1')">
+
+      <span>Charisme</span>
+      <button onclick="updateStat('charisme', -1)">-</button>
+      <span id="charisme" class="stat-value">10</span>
+      <button onclick="updateStat('charisme', 1)">+</button>
+      <input type="checkbox" name="charisme-plus2" onclick="handleCheckbox('charisme', 'plus2')">
+      <input type="checkbox" name="charisme-plus1" onclick="handleCheckbox('charisme', 'plus1')">
+    </div>
+  </div>
+
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 40px; text-align: center;">
+  <!-- Column: Armes -->
+  <div>
+    <h3 style="text-decoration: underline; font-size: 1.5rem;">Armes</h3>
+    <ul style="list-style: none; padding: 0; margin: 10px 0; font-size: 1.2rem;">
+      <li>Épée longue</li>
+      <li>Épée Courte</li>
+      <li>Épée à 2 mains</li>
+      <li>Hache</li>
+      <li>Lance</li>
+      <li>Marteau de guerre</li>
+      <li>Marteau Légers</li>
+      <li>Arc Long</li>
+      <li>Arbalète légère</li>
+      <li>Armes Solitaires</li>
+    </ul>
+  </div>
+
+  <!-- Column: Armures -->
+  <div>
+    <h3 style="text-decoration: underline; font-size: 1.5rem;">Armures</h3>
+    <ul style="list-style: none; padding: 0; margin: 10px 0; font-size: 1.2rem;">
+      <li>Lourde</li>
+      <li>Medium</li>
+      <li>Légère</li>
+      <li>Vêtements</li>
+      <li>Bouclier</li>
+    </ul>
+  </div>
+
+  <!-- Column: Compétences -->
+  <div>
+    <h3 style="text-decoration: underline; font-size: 1.5rem;">Compétences</h3>
+    <ul style="list-style: none; padding: 0; margin: 10px 0; font-size: 1.2rem;">
+      <li>Persuasion</li>
+      <li>Intimidation</li>
+      <li>Supercherie</li>
+    </ul>
+  </div>
+
+  <!-- Column: Sorts -->
+  <div>
+    <h3 style="text-decoration: underline; font-size: 1.5rem;">Sorts</h3>
+    <ul style="list-style: none; padding: 0; margin: 10px 0; font-size: 1.2rem;">
+    <li class="tooltip" data-tooltip="Alourdi l'arme. +1d4 dégâts contondant">Lest</li>
+    </ul>
+  </div>
+
+  <!-- Column: Passifs -->
+  <div>
+    <h3 style="text-decoration: underline; font-size: 1.5rem;">Passifs</h3>
+    <ul style="list-style: none; padding: 0; margin: 10px 0; font-size: 1.2rem;">
+      <li class="tooltip" data-tooltip="Réduit par 2 les dégâts provenants de sol/rocs">Résistance à la terre/roche</li>
+      <li class="tooltip" data-tooltip="+1 Endurance">Solite comme un roc</li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Right Section -->
+<div class="right-section">
+  <div class="image-container">
+    <img src="../../../../img/bgnd_Solitaire.jpg" alt="Image 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+  </div>
+  <div class="image-container">
+    <img src="../../../../img/Solitaire_Guerrier.jpg" alt="Image 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+  </div>
+  <div class="image-container">
+    <img src="../../../../img/Politicien_solitaire.jpg" alt="Image 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+  </div>
+</div>
+
+  <script>
+    let pointsRemaining = 15;
+
+    function updateStat(stat, change) {
+      const statElement = document.getElementById(stat);
+      const currentValue = parseInt(statElement.textContent);
+      const pointsElement = document.getElementById('points');
+
+      // Calculate point cost
+      const pointCost = (currentValue >= 13 && change > 0) || (currentValue > 13 && change < 0) ? 2 : 1;
+
+      // Check if the change is valid
+      if (
+        (change > 0 && pointsRemaining >= pointCost && currentValue < 15) ||
+        (change < 0 && currentValue > 8)
+      ) {
+        const newValue = currentValue + change;
+        statElement.textContent = newValue;
+        pointsRemaining -= change > 0 ? pointCost : -pointCost;
+        pointsElement.textContent = pointsRemaining;
+      }
+    }
+  </script>
+
+</body>
+</html>
