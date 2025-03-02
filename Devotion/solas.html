@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dévotion | Solas</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .designer-text {
+      width: 80%;
+      height: 100px;
+      font-size: 1.5rem;
+      text-align: center;
+      border: none;
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .user-input {
+      width: 80%;
+      height: 150px;
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 80%;
+    }
+
+    .checkbox-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .checkbox-container input[type="radio"] {
+      transform: scale(1.5);
+    }
+
+    .label-text {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+<h2>Dévotion: Solas</h2> 
+    <p>Les Solitaire gagnent 1 point de dévotion à chaque fois qu'ils utilisent leur action pour la même chose qu'au tour précédent. Ils en perdent un le cas échéant.</p>
+  <p>Ce qui constitue "la même action" varie en fonction du niveau de leur dévotion.</p>
+  <p>0-2: Toute attaque est considérée comme la même action.</p>
+  <p>3-4: La même attaque précise doit être utilisée.</p>
+  <p>5-6: La même cible doit être conservée.</p>
+  <p>7: Aucune action bonus ne peut être utilisée à moins qu'elle fasse partie du coût de l'action</p>
+
+  <textarea class="user-input" placeholder="Enter your text here..."></textarea>
+
+  <div>
+    <!-- Checkboxes with text and images -->
+    <form id="checkbox-form">
+      <div class="checkbox-container">
+        <span class="label-text">Immunise aux dégâts contondants.</span>
+        <input type="radio" name="option" id="option1">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Double le modificateur INT.</span>
+        <input type="radio" name="option" id="option2">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Résiste à toute forme de dégâts contondants.</span>
+        <input type="radio" name="option" id="option3">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le +1 dégâts par +1d4 de dégâts</span>
+        <input type="radio" name="option" id="option4">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le +1 par +1d4.</span>
+        <input type="radio" name="option" id="option5">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">+1 de dégâts</span>
+        <input type="radio" name="option" id="option6">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">+1 au jet de dés</span>
+        <input type="radio" name="option" id="option7">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">/</span>
+        <input type="radio" name="option" id="option8" checked>
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option9">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option10">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option11">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option12">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option13">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option14">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Lorem ipsum</span>
+        <input type="radio" name="option" id="option15">
+        <img src="../img/Colarable flame.png" alt="Placeholder Image">
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
