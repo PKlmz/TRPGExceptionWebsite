@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persuasion Calculatrice</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .item {
+      margin: 10px 0;
+    }
+    .item span {
+      display: inline-block;
+      width: 200px;
+    }
+    .item button {
+      margin-left: 10px;
+    }
+    .total {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Persuasion: <span id="persuasion-value">0</span></h1>
+  <h2>Réduction: <span id="reduction-value">0%</span></h2>
+
+  <div id="items">
+    <!-- Item lines will be generated dynamically here -->
+  </div>
+
+  <div class="total">
+    <p>Total: <span id="total-value">y</span></p>
+    <p>Après réduction: <span id="after-reduction-value">z</span></p>
+  </div>
+
+  <script>
+    const items = [
+      { name: "Arc court", value: 200 },
+      { name: "Arc long", value: 250 },
+      { name: "Arbalète à poing", value: 150 },
+      { name: "Arbalète légère", value: 250 },
+      { name: "Armure légère", value: 300 },
+      { name: "Bottes chaudes", value: 150 },
+      { name: "Chapeau chaud", value: 100 },
+      { name: "Dague", value: 100 },
+      { name: "Épée courte", value: 150 },
+      { name: "Vêtements chauds", value: 100 },
+      { name: "Gants chauds", value: 100 },
+      { name: "Potion", value: 80 },
+    ];
+
+    let persuasion = 0; // Default persuasion value, replace with user input
+    let reductionPercentage = persuasion * 5; // Reduction percentage = persuasion * 5
+    let itemValues = Array(items.length).fill(0); // Array to keep track of item quantities
+
+    // Function to update the page
+    function updateTotalAndReduction() {
+      let totalValue = 0;
+      
+      // Calculate the total value
+      totalValue = itemValues.reduce((acc, quantity, index) => acc + quantity * items[index].value, 0);
+      
+      // Update the total value
+      document.getElementById('total-value').textContent = totalValue;
+
+      // Calculate the after-reduction value
+      const afterReduction = totalValue * (1 - reductionPercentage / 100);
+      document.getElementById('after-reduction-value').textContent = afterReduction.toFixed(2);
+    }
+
+    // Function to create the item list dynamically
+    function generateItemList() {
+      const itemsContainer = document.getElementById('items');
+      itemsContainer.innerHTML = ''; // Clear previous items (if any)
+
+      items.forEach((item, index) => {
+        const itemContainer = document.createElement('div');
+        itemContainer.classList.add('item');
+        
+        const itemName = document.createElement('span');
+        itemName.textContent = `${item.name} — ${item.value}`;
+        
+        const itemValue = document.createElement('span');
+        itemValue.id = `item-value-${index}`;
+        itemValue.textContent = "0";
+        
+        const increaseButton = document.createElement('button');
+        increaseButton.textContent = "+";
+        increaseButton.onclick = () => changeValue(index, 1);
+        
+        const decreaseButton = document.createElement('button');
+        decreaseButton.textContent = "-";
+        decreaseButton.onclick = () => changeValue(index, -1);
+        
+        itemContainer.appendChild(itemName);
+        itemContainer.appendChild(itemValue);
+        itemContainer.appendChild(increaseButton);
+        itemContainer.appendChild(decreaseButton);
+
+        itemsContainer.appendChild(itemContainer);
+      });
+    }
+
+    // Change item value
+    function changeValue(index, change) {
+      itemValues[index] += change;
+      if (itemValues[index] < 0) itemValues[index] = 0;
+      document.getElementById(`item-value-${index}`).textContent = itemValues[index];
+      updateTotalAndReduction();
+    }
+
+    // Initialize page
+    generateItemList(); // Generate the item list
+    updateTotalAndReduction(); // Update the total and after-reduction values
+
+  </script>
+  
+</body>
+</html>
