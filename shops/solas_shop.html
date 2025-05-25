@@ -28,8 +28,8 @@
 <body>
 
   <h1>Shop: Solas</h1>
-  <h1>Persuasion: <span id="persuasion-value">5</span></h1>
-  <h2>Réduction: <span id="reduction-value">25%</span></h2>
+  <h1>Persuasion: <span id="persuasion-value">6</span></h1>
+  <h2>Réduction: <span id="reduction-value">30%</span></h2>
 
   <div id="items">
     <!-- Item lines will be generated dynamically here -->
@@ -58,12 +58,23 @@
       { name: "Gants chauds", value: 100 },
       { name: "Potion (limite 3)", value: 80 },
       { name: "Sac (5 emplacements)", value: 200 },
-      { name: "Pierre", value: 50 },
+      { name: "Pierre", value: 30 },
       { name: "Propriété Solide", value: 100 },
       { name: "Boucliet (durabilité 15)", value: 400 },
+      { name: "Flèche contondante", value: 20 },
+      { name: "Flèche empoisonnée", value: 35 },
+      { name: "Flèche de glace", value: 35 },
+      { name: "Propriété dague: Ebonite", value: 200},
+      { name: "Propriété Boucliet: Ebonite", value: 200},
+      { name: "Propriété Épée courte: Ebonite", value: 250},
+      { name: "Propriété Armure légère: Ebonite", value: 250},
+      { name: "Propriété Armure Medium: Ebonite", value: 300},
+      { name: "Propriété Armure légère: Poison", value: 100},
+      { name: "Propriété Armure Medium: Poison", value: 150},
+      { name: "Flèches Ebonite (x35)", value: 200},
     ];
 
-    let persuasion = 5; // Default persuasion value, replace with user input
+    let persuasion = 6; // Default persuasion value, replace with user input
     let reductionPercentage = persuasion * 5; // Reduction percentage = persuasion * 5
     let itemValues = Array(items.length).fill(0); // Array to keep track of item quantities
 
