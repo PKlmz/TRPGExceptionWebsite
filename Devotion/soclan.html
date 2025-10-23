@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dévotion | Solas</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .designer-text {
+      width: 80%;
+      height: 100px;
+      font-size: 1.5rem;
+      text-align: center;
+      border: none;
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .user-input {
+      width: 80%;
+      height: 150px;
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 80%;
+    }
+
+    .checkbox-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .checkbox-container input[type="radio"] {
+      transform: scale(1.5);
+    }
+
+    .label-text {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+<h2>Dévotion: Solas</h2> 
+    <p>Les Solitaire doivent sélectionner 3 pattern d'actions. Un pattern d'attaque, un pattern utilitaire et un pattern défensif</p>
+  <p>1-2: Tant que le Solitaire suit 2/3 du pattern il gagne 1 en fin de tour</p>
+  <p>3-4: Le Solitaire doit également terminer son tour sur la case ou il l'a commencée</p>
+  <p>5-6: Le Solitaire doit effectuer réussir son pattern complet.</p>
+  <p>7: Le Solitaire doit terminer son tour sur la case ou il a commencé son tour précédent</p>
+
+  <textarea class="user-input" placeholder="Enter your text here..."></textarea>
+
+  <div>
+    <!-- Checkboxes with text and images -->
+
+    <form id="checkbox-form">
+  <div class="checkbox-container">
+    <span class="label-text">Augmente la CA de 1</span>
+    <input type="radio" name="option" id="option1">
+    <img src="../img/devotion/rocks-basic/15_Diamond_White_Plus.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Réduit les dégâts physiques subis de 1</span>
+    <input type="radio" name="option" id="option2">
+    <img src="../img/devotion/rocks-basic/14_Tanzanite_Lavender.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Résiste à toute forme de dégâts contondants</span>
+    <input type="radio" name="option" id="option3">
+    <img src="../img/devotion/rocks-basic/13_Fire_Opal_Orange.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Remplace le +1 dégâts par +1d4 de dégâts.</span>
+    <input type="radio" name="option" id="option4">
+    <img src="../img/devotion/rocks-basic/12_Peridot_Green.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Remplace le +1 par +1d4.</span>
+    <input type="radio" name="option" id="option5">
+    <img src="../img/devotion/rocks-basic/11_Turquoise_Teal.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">+1 de dégâts.</span>
+    <input type="radio" name="option" id="option6">
+    <img src="../img/devotion/rocks-basic/10_Ruby_Red.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">+1 aux jets de dés.</span>
+    <input type="radio" name="option" id="option7">
+    <img src="../img/devotion/rocks-basic/9_Sapphire_Blue.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">/</span>
+    <input type="radio" name="option" id="option8" checked>
+    <img src="../img/devotion/rocks-basic/8_Topaz_Blue.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">-1 aux jets de dés.</span>
+    <input type="radio" name="option" id="option9">
+    <img src="../img/devotion/rocks-basic/7_Amethyst_Purple.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">-1 de dégâts.</span>
+    <input type="radio" name="option" id="option10">
+    <img src="../img/devotion/rocks-basic/6_Rose_Quartz_Pink.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Remplace le -1 par -1d4 aux jets de dés.</span>
+    <input type="radio" name="option" id="option11">
+    <img src="../img/devotion/rocks-basic/5_Citrine_Gold.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Remplace le -1 par -1d4 de dégâts.</span>
+    <input type="radio" name="option" id="option12">
+    <img src="../img/devotion/rocks-basic/4_Carnelian_Orange.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Perds ses résistances aux dégâts contondants.</span>
+    <input type="radio" name="option" id="option13">
+    <img src="../img/devotion/rocks-basic/3_Jade_Green.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Retire les modificateurs d'INT.</span>
+    <input type="radio" name="option" id="option14">
+    <img src="../img/devotion/rocks-basic/2_Tiger_Eye_Brown.png" alt="Placeholder Image">
+  </div>
+
+  <div class="checkbox-container">
+    <span class="label-text">Ne peut plus lancer de sorts.</span>
+    <input type="radio" name="option" id="option15">
+    <img src="../img/devotion/rocks-basic/1_Hematite_Gray.png" alt="Placeholder Image">
+  </div>
+</form>
+
+</body>
+</html>
