@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quel est mon clan ?</title>
+<link rel="stylesheet" href="styles.css"> <!-- Your existing site styles -->
+
+<style>
+/* QUIZ-SPECIFIC STYLES — SAFE NAMESPACE */
+
+/* Center the quiz perfectly in the section */
+.section {
+  display: flex;               /* Use flexbox for centering */
+  align-items: center;         /* Vertical center */
+  justify-content: center;     /* Horizontal center */
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Quiz container styling */
+.quiz-container {
+  width: 90%;
+  max-width: 650px;
+  background: rgba(10, 15, 37, 0.85);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+  position: relative;
+  z-index: 5;
+  margin: 0 auto;              /* ensure centered in smaller screens */
+}
+
+
+.quiz-progress {
+  background: #162040;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 12px;
+  margin-bottom: 20px;
+}
+.quiz-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #2196f3);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.quiz-question {
+  background: rgba(20, 30, 60, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.quiz-question p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #cce7ff;
+  text-align: left;
+  text-shadow: none;
+}
+
+.quiz-label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+  text-align: left;
+  color: #e0eaff;
+}
+.quiz-label input[type="radio"] {
+  margin-right: 8px;
+}
+
+.quiz-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.quiz-btn {
+  background: #394a80;
+  color: #e0eaff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+.quiz-btn:hover {
+  background: #2c3a6b;
+}
+
+.quiz-result {
+  margin-top: 30px;
+  background: rgba(20, 30, 60, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.quiz-bar {
+  height: 15px;
+  border-radius: 6px;
+  background: #2b395f;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.quiz-bar-inner {
+  height: 100%;
+  background: #4caf50;
+}
+
+.quiz-desc {
+  margin-top: 10px;
+  font-style: italic;
+  color: #b3d1ff;
+}
+</style>
+</head>
+<body>
+
+
+  <!-- Toolbar with Dropdown Menus -->
+  <nav class="toolbar">
+    <ul>
+      <li><a href="index.html">Genèse</a></li>
+      
+      <li class="dropdown">
+        <a>Structure</a>
+        <div class="dropdown-content">
+          <a href="structure_architecturale.html">Structure Architecturale</a>
+          <a href="structure_sociétale.html">Structure Sociétale</a>
+        </div>
+      </li>
+
+      <li><a href="magie.html">Magie</a></li>
+      
+      <li class="dropdown">
+        <a>Clans</a>
+        <div class="dropdown-content">
+          <a href="gel.html">Gel</a>
+          <a href="sol.html">Sol</a>
+          <a href="eole.html">Éole</a>
+          <a href="or.html">Or</a>
+        </div>
+      </li>
+
+      <li><a href="framework.html">Framework de création</a></li>
+      <li><a href="Test_de_personnalitév2.html">Quel est votre clan ?</a></li>
+    </ul>
+  </nav>
+
+
+<section class="section">
+  <div class="quiz-container">
+    <h2>Discover Your Faction</h2>
+
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="progressBar"></div>
+    </div>
+
+    <div id="quiz"></div>
+
+    <div class="quiz-buttons" id="navButtons" style="display:none;">
+      <button class="quiz-btn" id="prevBtn">← Previous</button>
+      <button class="quiz-btn" id="nextBtn">Next →</button>
+    </div>
+
+    <div id="result" class="quiz-result" style="display:none;"></div>
+  </div>
+</section>
+
+<script>
+
+const factions = {
+  Solitaire: {
+    name: "Solitaire",
+    description: ""
+  },
+  Géléite: {
+    name: "Géléite",
+    description: ""
+  },
+  Éolien: {
+    name: "Éolien",
+    description: ""
+  },
+  Oréal: {
+    name: "Oréal",
+    description: ""
+  }
+};
+
+const questions = [
+  {
+    text: "Vous vous faites fréquemment de nouveaux amis.",
+    options: [
+      { text: "Oui", scores: { Éolien: 1, Géléite: 0 } },
+      { text: "Non", scores: { Éolien: 0, Géléite: 1 } },
+    ]
+  },
+  //2
+  {
+    text: "Vous avez plein de projets que vous commencez mais n'en finissez pas la plupart.",
+    options: [
+      { text: "Oui", scores: { Éolien: 1, Oréal: 0 } },
+      { text: "Non", scores: { Éolien: 0, Oréal: 1 } },
+    ]
+  },
+  //3
+  {
+    text: "Vous êtes prêts à mourir pour une cause en laquelle vous croyez.",
+    options: [
+      { text: "Absolument", scores: { Éolien: 0, Oréal: 1, Solitaire: 1 } },
+      { text: "Non, ma vie est sacrée.", scores: { Éolien: 1, Oréal: 0, Solitaire: 0 } },
+    ]
+  },
+  //4
+  {
+    text: "Vous voulez changer le monde.",
+    options: [
+      { text: "Oui", scores: { Éolien: 0, Oréal: 1 } },
+      { text: "Non", scores: { Éolien: 1, Oréal: 0 } },
+    ]
+  },
+  //5
+  {
+    text: "Les liens familiaux ont peu de valeur pour vous.",
+    options: [
+      { text: "Oui", scores: { Éolien: 1, Solitaire: 0, Géléite: 0 } },
+      { text: "Non", scores: { Éolien: 0, Solitaire: 1, Géléite: 1 } },
+    ]
+  },
+  //6
+  {
+    text: "Au sujet de votre routine:",
+    options: [
+      { text: "Je n'ai pas vraiment de routine, je choisis ce que je fais au moment même selon mes envies", scores: { Éolien: 1, Solitaire: 0 } },
+      { text: "Si je dévie de me routine je me sens mal pour la journée", scores: { Éolien: 0, Solitaire: 1 } },
+    ]
+  },
+  //7
+  {
+    text: "Vous êtes toujours disponibles pour aider vos proches",
+    options: [
+      { text: "Oui", scores: { Éolien: 0, Solitaire: 1 } },
+      { text: "Pas vraiment", scores: { Éolien: 1, Solitaire: 0 } },
+    ]
+  },
+  //8
+  {
+    text: "Vous organisez vos affaires:",
+    options: [
+      { text: "De façon claire et méthodique", scores: { Éolien: 0, Géléite: 1 } },
+      { text: "Selon un chaos ou vous seul vous retrouvez", scores: { Éolien: 1, Géléite: 0 } },
+    ]
+  },
+  //9
+  {
+    text: "Votre priorité lorsque vous travaillez est de:",
+    options: [
+      { text: "De vous amuser en le faisant, dans la mesure du possible", scores: { Éolien: 1, Géléite: 0 } },
+      { text: "Rendre le résultat impeccable", scores: { Éolien: 0, Géléite: 1 } },
+    ]
+  },
+  //10
+  {
+    text: "Vous regrettez certaines de vos actions:",
+    options: [
+      { text: "Souvent", scores: { Éolien: 0, Oréal: 1, Géléite: 0 } },
+      { text: "Rarement", scores: { Éolien: 1, Oréal: 0, Géléite: 1 } },
+    ]
+  },
+  //11
+  {
+    text: "Vous êtes victime de nostalgie:",
+    options: [
+      { text: "Souvent", scores: { Éolien: 0, Oréal: 1 } },
+      { text: "Jamais", scores: { Éolien: 1, Oréal: 0 } },
+    ]
+  },
+  //12
+  {
+    text: "Quand vous avez un projet vous vous y consacrez à 100%..",
+    options: [
+      { text: "Oui, jusqu' à ce qu'il aboutisse", scores: { Éolien: 0, Oréal: 1 } },
+      { text: "Non ou alors pour quelques jours avant de passer à autre chose", scores: { Éolien: 1, Oréal: 0 } },
+    ]
+  },
+  //13
+  {
+    text: "Vous aimez voyager.",
+    options: [
+      { text: "Oui", scores: { Oréal: 1, Solitaire: 0, Éolien: 1 } },
+      { text: "Non", scores: { Oréal: 0, Solitaire: 1, Éolien: 0 } },
+    ]
+  },
+  //14
+  {
+    text: "Vous aimez faire varier vos activités",
+    options: [
+      { text: "Oui", scores: { Oréal: 1, Solitaire: 0, Éolien: 1 } },
+      { text: "Une fois que j'ai trouvé ce que j'aime je m'y tiens", scores: { Oréal: 0, Solitaire: 1, Éolien: 0 } },
+    ]
+  },
+  //15
+  {
+    text: "Le progrès est quelque chose de positif",
+    options: [
+      { text: "Oui", scores: { Oréal: 1, Solitaire: 0 } },
+      { text: "Non", scores: { Oréal: 0, Solitaire: 1 } },
+    ]
+  },
+  //16
+  {
+    text: "Vous êtes rancunier",
+    options: [
+      { text: "Oui", scores: { Oréal: 1, Géléite: 0, Solitaire: 1 } },
+      { text: "Non", scores: { Oréal: 0, Géléite: 1, Solitaire: 0 } },
+    ]
+  },
+  //17
+  {
+    text: "Vous avez certaines opinions que vous maintenez, même si vous admettez que les preuves indiquent plutôt autre chose",
+    options: [
+      { text: "Quelques unes", scores: { Oréal: 1, Géléite: 0 } },
+      { text: "Aucune", scores: { Oréal: 0, Géléite: 1 } },
+    ]
+  },
+  //18
+  {
+    text: "Si vous aviez prévu de faire quelque chose mais que vous êtes trop fatigué, vous remettez ça au lendemain.",
+    options: [
+      { text: "Souvent", scores: { Oréal: 1, Géléite: 0 } },
+      { text: "Jamais/Très rarement", scores: { Oréal: 0, Géléite: 1 } },
+    ]
+  },
+  //19
+  {
+    text: "Vos proches savent ou vous êtes/ce que vous faites.",
+    options: [
+      { text: "Majoritairement", scores: { Éolien: 0, Solitaire: 1 } },
+      { text: "Probablement pas", scores: { Éolien: 1, Solitaire: 0 } },
+    ]
+  },
+  //20
+  {
+    text: "Vous êtes prévisible.",
+    options: [
+      { text: "Si on vous connait, oui", scores: { Éolien: 0, Solitaire: 1 } },
+      { text: "Nope", scores: { Éolien: 1, Solitaire: 0 } },
+    ]
+  },
+  //21
+  {
+    text: "Vous êtes casanier.",
+    options: [
+      { text: "Tot   alement", scores: { Éolien: 0, Solitaire: 1 } },
+      { text: "Je deviens fou si je reste enfermé chez moi", scores: { Éolien: 1, Solitaire: 0 } },
+    ]
+  },
+  //22
+  {
+    text: "Votre façon de voir le monde a encore beaucoup changé après vos 18 ans.",
+    options: [
+      { text: "Beaucoup", scores: { Oréal: 1, Solitaire: 0 } },
+      { text: "Fondamentalement, très peu", scores: { Oréal: 0, Solitaire: 1 } },
+    ]
+  },
+  //23
+  {
+    text: "Vous aidez des inconnus:",
+    options: [
+      { text: "Régulièrement", scores: { Oréal: 1, Solitaire: 0 } },
+      { text: "Pas le temps", scores: { Oréal: 0, Solitaire: 1 } },
+    ]
+  },
+  //24
+  {
+    text: "Il est important de préserver vos traditions/votre culture, même lorsque ça cause problèmes à d'autres personnes ou vous-même",
+    options: [
+      { text: "Oui", scores: { Oréal: 0, Solitaire: 1 } },
+      { text: "Non", scores: { Oréal: 1, Solitaire: 0 } },
+    ]
+  },
+  //25
+  {
+    text: "Vous avez tendance à faire les choses de la façon dont vous avez l'habitude de les faire, même si vous savez que ça n'est pas la façon la plus efficace",
+    options: [
+      { text: "Souvent", scores: { Solitaire: 1, Géléite: 0 } },
+      { text: "Rarement/Jamais", scores: { Solitaire: 0, Géléite: 1 } },
+    ]
+  },
+  //26
+  {
+    text: "Après un long débat vous commencez à vous rendre compte que vous avez tort. Vous faites preuve de mauvaise foi pour le reste du débat et admettrez plus tard avoir tort.",
+    options: [
+      { text: "Parfois", scores: { Solitaire: 1, Géléite: 0 } },
+      { text: "Rarement/Jamais", scores: { Solitaire: 0, Géléite: 1 } },
+    ]
+  },
+  //27
+  {
+    text: "Vous défendriez des convictions personnelles même si pragmatiquement, ça risque de vous coûter cher.",
+    options: [
+      { text: "Je mourrais pour maintenir certaines de mes opinions", scores: { Solitaire: 1, Géléite: 0, Oréal: 1 } },
+      { text: "Si j'ai l'impression que véhiculer mes opinions va m'attirer des ennuis, je n'ai pas de mal à adapter mon discours au public", scores: { Solitaire: 0, Géléite: 1, Oréal: 0 } },
+    ]
+  },
+  //28
+  {
+    text: "Si vous deviez tuer 1 personne pour en sauver 3, vous le feriez.",
+    options: [
+      { text: "Oui", scores: { Oréal: 0, Géléite: 1 } },
+      { text: "Non", scores: { Oréal: 1, Géléite: 0 } },
+    ]
+  },
+  //29
+  {
+    text: "Le bénéfice que vous pouvez tirer d'une relation joue un rôle dans les amitiés que vous forgez.",
+    options: [
+      { text: "Beaucoup", scores: { Oréal: 0, Géléite: 1 } },
+      { text: "Pas du tout", scores: { Oréal: 1, Géléite: 0 } },
+    ]
+  },
+  //30
+  {
+    text: "Vous êtes émotionnel.",
+    options: [
+      { text: "Oui", scores: { Oréal: 1, Géléite: 0 } },
+      { text: "Non", scores: { Oréal: 0, Géléite: 1 } },
+    ]
+  },
+  //31
+  {
+    text: "L'impression de n'avoir rien fait de votre vie vous stresse.",
+    options: [
+      { text: "Oui", scores: { Éolien: 1, Géléite: 0, Oréal: 1 } },
+      { text: "Non", scores: { Éolien: 0, Géléite: 1, Oréal: 0 } },
+    ]
+  },
+  //32
+  {
+    text: "Il est important pour vous de contribuer à la société.",
+    options: [
+      { text: "Oui", scores: { Éolien: 0, Géléite: 1 } },
+      { text: "Non", scores: { Éolien: 1, Géléite: 0 } },
+    ]
+  },
+  //33
+  {
+    text: "La courtoisie/politesse est quelque chose d'important pour vous.",
+    options: [
+      { text: "Oui, j'y adhère dans la mesure du possible", scores: { Éolien: 0, Géléite: 2 } },
+      { text: "Non", scores: { Éolien: 1, Géléite: 0 } },
+    ]
+  },
+  //34
+  {
+    text: "Vous dénonceriez un proche qui a commis un crime grave (pas envers vous directement).",
+    options: [
+      { text: "Oui", scores: { Solitaire: 0, Géléite: 1 } },
+      { text: "Non et je l'aiderais à éviter les conséquences", scores: { Solitaire: 1, Géléite: 0 } },
+    ]
+  },
+  //35
+  {
+    text: "Il vous arrive de tricher/contourner les règles à des fins personnelles",
+    options: [
+      { text: "Si vous savez qu'on ne vous prendra pas et que ca accélère les choses", scores: { Solitaire: 1, Géléite: 0 } },
+      { text: "Rarement/jamais", scores: { Solitaire: 0, Géléite: 1 } },
+    ]
+  },
+  //36
+  {
+    text: "Lorsque vous construisez quelque chose, l'aspect esthétique est important.",
+    options: [
+      { text: "Oui", scores: { Solitaire: 0, Géléite: 1 } },
+      { text: "Non, si ça marche, c'est bon pour moi", scores: { Solitaire: 1, Géléite: 0 } },
+    ]
+  },
+
+//37
+  {
+    text: "Lors de votre mort, vous voulez:",
+    options: [
+      { text: "Partir avec un sentiment de devoir accompli", scores: { Géléite: 1 } },
+      { text: "Partir entouré de votre proches dans un bel endroit", scores: { Oréal: 1 } },
+      { text: "Partir sans douleur dans votre sommeil", scores: { Éolien: 1 } },
+      { text: "Partir en sachant que vous avez vécu sans compromettre vos valeurs", scores: { Solitaire: 1 } },
+    ]
+  },
+//38
+  {
+    text: "Le pire défaut est:",
+    options: [
+      { text: "L'égoisme", scores: { Géléite: 1 } },
+      { text: "L'apathie", scores: { Oréal: 1 } },
+      { text: "La lâcheté", scores: { Éolien: 1 } },
+      { text: "L'infidelité", scores: { Solitaire: 1 } },
+    ]
+  },
+//39
+  {
+    text: "Le plus grand pêché est:",
+    options: [
+      { text: "Le mensonge", scores: { Géléite: 1 } },
+      { text: "Le meurtre", scores: { Oréal: 1 } },
+      { text: "L'emprisonnement", scores: { Éolien: 1 } },
+      { text: "La trahison", scores: { Solitaire: 1 } },
+    ]
+  },
+//40
+  {
+    text: "Vous êtes:",
+    options: [
+      { text: "Patient", scores: { Géléite: 1 } },
+      { text: "Passioné", scores: { Oréal: 1 } },
+      { text: "Curieux", scores: { Éolien: 1 } },
+      { text: "Fidèle", scores: { Solitaire: 1 } },
+    ]
+  },
+//41
+  {
+    text: "Vous aimez:",
+    options: [
+      { text: "Réfléchir", scores: { Géléite: 1 } },
+      { text: "Faire du sport", scores: { Oréal: 1 } },
+      { text: "Jouer", scores: { Éolien: 1 } },
+      { text: "Construire", scores: { Solitaire: 1 } },
+    ]
+  },
+//42
+  {
+    text: "Vous craignez:",
+    options: [
+      { text: "Le chaos", scores: { Géléite: 1 } },
+      { text: "La perte d'un être cher", scores: { Oréal: 1 } },
+      { text: "Le totalitarisme", scores: { Éolien: 1 } },
+      { text: "Le changement", scores: { Solitaire: 1 } },
+    ]
+  },
+//43
+  {
+    text: "Le jugement qui vous importe est:",
+    options: [
+      { text: "Le votre", scores: { Géléite: 1 } },
+      { text: "Celui de la société", scores: { Oréal: 1 } },
+      { text: "Celui de personne", scores: { Éolien: 1 } },
+      { text: "Celui de vos proches", scores: { Solitaire: 1 } },
+    ]
+  },
+//44
+  {
+    text: "Sauvez un groupe/personne, le reste meurt (vos enfants ne sont inclus dans aucun groupe).",
+    options: [
+      { text: "1000 personnes", scores: { Géléite: 1 } },
+      { text: "Votre partenaire", scores: { Oréal: 1 } },
+      { text: "Vous-même", scores: { Éolien: 1 } },
+      { text: "Votre famille proche", scores: { Solitaire: 1 } },
+    ]
+  },
+//45
+  {
+    text: "Lorsque vous devez accomplir un tâche qu'est ce qui vous motive:",
+    options: [
+      { text: "L'intérêt du projet une fois accompli", scores: { Géléite: 1 } },
+      { text: "Les personnes avec qui vous le faites", scores: { Oréal: 1 } },
+      { text: "L'amusement procuré durant l'accomplissement du projet", scores: { Éolien: 1 } },
+      { text: "Le devoir", scores: { Solitaire: 1 } },
+    ]
+  },
+//46
+  {
+    text: "Qu'est-ce qui est le plus important:",
+    options: [
+      { text: "L' ordre", scores: { Géléite: 1 } },
+      { text: "L'amour/passion", scores: { Oréal: 1 } },
+      { text: "S'amuser", scores: { Éolien: 1 } },
+      { text: "La famille/amis", scores: { Solitaire: 1 } },
+    ]
+  },
+//47
+  {
+    text: "Votre vie idéale est:",
+    options: [
+      { text: "Calme, sans remous", scores: { Géléite: 1 } },
+      { text: "Une aventure épique remplie d'action", scores: { Oréal: 1 } },
+      { text: "Un voyage sans fin", scores: { Éolien: 1 } },
+      { text: "Entouré de ceux que vous aimez", scores: { Solitaire: 1 } },
+    ]
+  },
+//48
+  {
+    text: "Vous triomphez face à l'adversité grâce à:",
+    options: [
+      { text: "Votre préparation", scores: { Géléite: 1 } },
+      { text: "Votre capacité d'adaptation", scores: { Oréal: 1 } },
+      { text: "Votre capacité à penser à ce à quoi d'autres ne pensent pas", scores: { Éolien: 1 } },
+      { text: "Votre volonté", scores: { Solitaire: 1 } },
+    ]
+  },
+/*
+//49
+  {
+    text: "Votre avantage dans un combat est:",
+    options: [
+      { text: "Votre capacité à analyser la situation, s'il y a une faille, vous la trouverez", scores: { Géléite: 1 } },
+      { text: "Votre supériorité physique, vous être plus fort et plus rapide", scores: { Oréal: 1 } },
+      { text: "Votre créativité, il ne vous verra pas venir", scores: { Éolien: 1 } },
+      { text: "Votre entraînement, vous connaissez les bases", scores: { Solitaire: 1 } },
+    ]
+  },
+*/
+];
+
+/* -------------------------------------------
+   SHUFFLE (Fisher–Yates) - MUTATES and RETURNS array
+------------------------------------------- */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array; // <- important
+}
+
+/* -------------------------------------------
+   RANDOMIZE QUESTIONS (once)
+------------------------------------------- */
+shuffle(questions); // mutates questions
+
+/* -------------------------------------------
+   RANDOMIZE ANSWERS PER QUESTION (once, stable)
+------------------------------------------- */
+let shuffledAnswers = questions.map(q => shuffle([...q.options]));
+
+/* -------------------------------------------
+   STATE VARIABLES
+------------------------------------------- */
+let currentQuestion = 0;
+let answers = Array(questions.length).fill(null);
+
+const quizDiv = document.getElementById('quiz');
+const navButtons = document.getElementById('navButtons');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const progressBar = document.getElementById('progressBar');
+const resultDiv = document.getElementById('result');
+
+/* -------------------------------------------
+   RENDER A QUESTION
+------------------------------------------- */
+function renderQuestion() {
+  const q = questions[currentQuestion];
+  const opts = shuffledAnswers[currentQuestion];
+
+  quizDiv.innerHTML = `
+    <div class="quiz-question">
+      <p><strong>Question ${currentQuestion + 1} of ${questions.length}</strong></p>
+      <p>${q.text}</p>
+
+      ${opts.map((opt, i) => `
+        <label class="quiz-label">
+          <input type="radio" name="q${currentQuestion}" value="${i}"
+            ${answers[currentQuestion] && answers[currentQuestion].index === i ? "checked" : ""}>
+          ${opt.text}
+        </label>
+      `).join('')}
+    </div>
+  `;
+
+  updateProgress();
+  navButtons.style.display = "flex";
+  prevBtn.style.display = currentQuestion === 0 ? "none" : "inline-block";
+  nextBtn.textContent = currentQuestion === questions.length - 1 ? "See Results →" : "Next →";
+}
+
+/* -------------------------------------------
+   UPDATE PROGRESS BAR
+------------------------------------------- */
+function updateProgress() {
+  progressBar.style.width = `${(currentQuestion / questions.length) * 100}%`;
+}
+
+/* -------------------------------------------
+   NEXT BUTTON
+------------------------------------------- */
+nextBtn.addEventListener("click", () => {
+  const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+  if (!selected) return alert("Please select an answer before continuing.");
+
+  const index = Number(selected.value);
+  const opt = shuffledAnswers[currentQuestion][index];
+
+  // Store BOTH index and the score object
+  answers[currentQuestion] = {
+    index: index,
+    scores: opt.scores
+  };
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) renderQuestion();
+  else showResults();
+});
+
+/* -------------------------------------------
+   PREVIOUS BUTTON
+------------------------------------------- */
+prevBtn.addEventListener("click", () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+});
+
+/* -------------------------------------------
+   SHOW RESULTS
+------------------------------------------- */
+function showResults() {
+  progressBar.style.width = "100%";
+  navButtons.style.display = "none";
+  quizDiv.innerHTML = "";
+
+  let scores = { Éolien: 0, Oréal: 0, Solitaire: 0, Géléite: 0 };
+
+  answers.forEach(a => {
+    if (!a) return;
+    for (const faction in a.scores) {
+      // defensive: ensure key exists
+      if (!(faction in scores)) scores[faction] = 0;
+      scores[faction] += a.scores[faction];
+    }
+  });
+
+  // Normalize (shift so lowest = 0), then compute percentages
+  const rawValues = Object.values(scores);
+  const minScore = Math.min(...rawValues);
+  const adjustedScores = {};
+  for (const faction in scores) adjustedScores[faction] = scores[faction] - minScore;
+
+  const total = Object.values(adjustedScores).reduce((a, b) => a + b, 0) || 1;
+
+  const percentages = Object.entries(adjustedScores).map(([key, value]) => ({
+    name: factions[key].name,
+    description: factions[key].description,
+    pct: Math.round((value / total) * 100)
+  }));
+
+  const topFaction = percentages.reduce((a, b) => a.pct > b.pct ? a : b);
+
+  resultDiv.innerHTML = `
+    <h3>🏅 Vous êtes un(e) <span style="color:#80d0ff;">${topFaction.name}</span></h3>
+    <p class="quiz-desc">${topFaction.description}</p>
+    <hr style="margin:20px 0; border-color:#334;">
+    ${percentages.map(p => `
+      <p><strong>${p.name}</strong> — ${p.pct}%</p>
+      <div class="quiz-bar"><div class="quiz-bar-inner" style="width:${p.pct}%;"></div></div>
+    `).join('')}
+  `;
+
+  resultDiv.style.display = "block";
+}
+
+renderQuestion();
+
+</script>
+
+</body>
+</html>
