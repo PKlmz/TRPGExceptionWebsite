@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dévotion | Baldor</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .designer-text {
+      width: 80%;
+      height: 100px;
+      font-size: 1.5rem;
+      text-align: center;
+      border: none;
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .user-input {
+      width: 80%;
+      height: 150px;
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 80%;
+    }
+
+    .checkbox-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .checkbox-container input[type="radio"] {
+      transform: scale(1.5);
+    }
+
+    .label-text {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+<h2>Dévotion: Baldor</h2>
+  <p>Les Oréaux gagnent en motivation a mesure qu'ils parviennent à frapper leur adversaires.</p>
+  <p> Si un allié tombe au sol(meurt pour un NPC) l'Oréal gagne 1 de Dévotion (max 1 par tour)</p>
+  <p>Si l'Oréal tombe au sol sa Dévotion tombe à 1 si elle était plus haute.</p>
+  <p>Ce qu'ils doivent prédire varie en fonction du niveau de leur dévotion.</p>
+  <p>0-2: Le personnage doit infliger au moins une fois des dégâts ce tour-ci (à n'importe quelle unité)</p>
+  <p>3-4: Le personnage doit infliger des dégâts (non mitigés par un jet de DEX réussi) à un ennemi</p>
+  <p>5-6: Le personnage doit avoir réussi 2 attaques (non mitigées par jet), réussi une attaque et soigné une fois ou réussi une attaque avec au moins 2 ennemi n'ayant pas réussi à mitiger l'attaque</p>
+  <p>7: Effectué au moins 30 dmg/soins en un tour</p>
+
+  <textarea class="user-input" placeholder="Enter your text here..."></textarea>
+
+  <div>
+    <!-- Checkboxes with text and images -->
+    <form id="checkbox-form">
+      <div class="checkbox-container">
+        <span class="label-text">Double les modificateur INT pour les dégâts de sorts</span>
+        <input type="radio" name="option" id="option1">
+        <img src="../img/devotion/flames_basic/1_Blazing_Crimson.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Gagne 1d4 PV au début de chaque tour tant que le lanceur est conscient</span>
+        <input type="radio" name="option" id="option2">
+        <img src="../img/devotion/flames_basic/2_Fiery_Ember.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Gagne une deuxième action bonus</span>
+        <input type="radio" name="option" id="option3">
+        <img src="../img/devotion/flames_basic/3_Tangerine_Glow.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le +1 dégâts par +1d4 de dégâts</span>
+        <input type="radio" name="option" id="option4">
+        <img src="../img/devotion/flames_basic/4_Amber_Heat.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le +1 par +1d4.</span>
+        <input type="radio" name="option" id="option5">
+        <img src="../img/devotion/flames_basic/5_Sunburst_Orange.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">+1 de dégâts.</span>
+        <input type="radio" name="option" id="option6">
+        <img src="../img/devotion/flames_basic/6_Golden_Flame.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">+1 au jet de dés.</span>
+        <input type="radio" name="option" id="option7">
+        <img src="../img/devotion/flames_basic/7_Mellow_Marigold.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">/</span>
+        <input type="radio" name="option" id="option8" checked>
+        <img src="../img/devotion/flames_basic/8_Honey_Spark.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">-1 au jet de dés.</span>
+        <input type="radio" name="option" id="option9">
+        <img src="../img/devotion/flames_basic/9_Lemon_Blaze.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">-1 de dégâts.</span>
+        <input type="radio" name="option" id="option10">
+        <img src="../img/devotion/flames_basic/10_Citrus_Mist.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le -1 par -1d4 aux dés.</span>
+        <input type="radio" name="option" id="option11">
+        <img src="../img/devotion/flames_basic/11_Mint_Breeze.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Remplace le -1 par -1d4 aux dégâts.</span>
+        <input type="radio" name="option" id="option12">
+        <img src="../img/devotion/flames_basic/12_Aqua_Whirl.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Ne peut plus utiliser concentration</span>
+        <input type="radio" name="option" id="option13">
+        <img src="../img/devotion/flames_basic/13_Sky_Frost.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Ne peut plus soigner</span>
+        <input type="radio" name="option" id="option14">
+        <img src="../img/devotion/flames_basic/14_Glacier_Drift.png" alt="Placeholder Image">
+      </div>
+
+      <div class="checkbox-container">
+        <span class="label-text">Ne peut plus lancer de sorts.</span>
+        <input type="radio" name="option" id="option15">
+        <img src="../img/devotion/flames_basic/15_Crystal_Wave.png" alt="Placeholder Image">
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
